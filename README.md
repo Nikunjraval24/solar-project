@@ -1,6 +1,6 @@
 # solar-project
 The Canal Solar Power Project is a solar canal project launched in Gujarat, India, to use the 532 km (331 mi) long network of Narmada canals across the state for setting up solar panels to generate electricity.
-output 
+
 
 <img width="1919" height="996" alt="Screenshot 2026-02-09 113711" src="https://github.com/user-attachments/assets/0ff806b5-ea59-48e6-a378-1d7f1dae957e" />
 <img width="1919" height="992" alt="Screenshot 2026-02-09 114211" src="https://github.com/user-attachments/assets/bcd8c7c1-3609-40b6-9402-527707369418" />
