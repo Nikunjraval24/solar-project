@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun Solar - Professional Solar Solutions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">☀️ Sun Solar</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Solar</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+                 <li><a href="complaint.php">Complaint</a></li>
+                <li><a href="admin/login.php">Admin</a></li>
+            </ul>
+            <div class="cart-icon" onclick="showCart()">
+                🛒 Cart
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Sun Solar - Solar Energy for Your Home</h1>
+        <p>Premium solar panel systems for homes and businesses in Surat</p>
+        <button class="cta-button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+            Explore More
+        </button>
+    </section>
+
+    <section id="about" class="about-solar">
+        <div class="about-content">
+            <h2 class="section-title">What is a Solar Panel System?</h2>
+            <p>A solar panel system produces electricity from sunlight using photovoltaic cells. The electricity generated is first in DC form and is converted into AC power by an inverter so it can be used in homes, offices, and schools. Solar systems help reduce electricity bills, provide clean renewable energy, and protect the environment by reducing pollution.</p>
+        </div>
+    </section>
+
+    <section id="services" class="info-section">
+        <h2 class="section-title">Our Premium Services</h2>
+        <div class="info-grid">
+            
+            <div class="info-card">
+                <div class="reviewer-avatar">🔧</div> 
+                <h3>Professional Installation</h3>
+                <p class="review-text">Expert setup by our team of certified solar technicians to ensure safety and maximum energy efficiency for your property.</p>
+                <div class="verified-tag">✓ Expert Team</div>
+            </div>
+
+            <div class="info-card">
+                <div class="reviewer-avatar">🛠️</div>
+                <h3>Regular Maintenance</h3>
+                <p class="review-text">Comprehensive bi-annual maintenance and cleaning services to keep your solar panels performing at their peak 365 days a year.</p>
+                <div class="verified-tag">✓ Scheduled Checks</div>
+            </div>
+
+            <div class="info-card">
+                <div class="reviewer-avatar">🛡️</div>
+                <h3>10 Years Warranty</h3>
+                <p class="review-text">We provide industry-leading long-term performance warranties on all our high-quality solar panels and system components.</p>
+                <div class="verified-tag">✓ Guaranteed Quality</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <h2 class="section-title">Our Solar Panel Systems</h2>
+        <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section id="reviews" class="reviews">
+    <h2 class="section-title">Customer Reviews</h2>
+    <div class="review-grid" id="reviewGrid"></div>
+</section>
+
+<section id="feedback" class="feedback">
+    <h2 class="section-title">Share Your Feedback</h2>
+
+    <form class="feedback-form" id="feedbackForm" action="feedback.php" method="POST">
+
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                placeholder="Enter your full name" 
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="Enter your email" 
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <select 
+                id="rating" 
+                name="rating" 
+                required>
+                <option value="">-- Select Rating --</option>
+                <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                <option value="4">⭐⭐⭐⭐ Very Good</option>
+                <option value="3">⭐⭐⭐ Good</option>
+                <option value="2">⭐⭐ Fair</option>
+                <option value="1">⭐ Poor</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Your Experience</label>
+            <textarea 
+                id="message" 
+                name="message" 
+                placeholder="Share your feedback with us..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+
+    </form>
+</section>
+
+
+
+            
+    <section class="team">
+    <h2 class="section-title">Our Management Team</h2>
+
+    <div class="team-grid">
+        <div class="team-card">
+            <h3>Rahul Sharma</h3>
+            <p>Project Manager</p>
+            <p>📞 98765 43210</p>
+        </div>
+
+        <div class="team-card">
+            <h3>Neha Patel</h3>
+            <p>Sales Manager</p>
+            <p>📞 91234 56789</p>
+        </div>
+
+        <div class="team-card">
+            <h3>Amit Verma</h3>
+            <p>Technical Engineer</p>
+            <p>📞 99887 66554</p>
+        </div>
+
+        <div class="team-card">
+            <h3>Pooja Shah</h3>
+            <p>Customer Support Head</p>
+            <p>📞 90123 45678</p>
+        </div>
+    </div>
+</section>
+
+
+   <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h3>☀️ Sun Solar</h3>
+            <p>Powering a greener future with reliable solar solutions.</p>
+        </div>
+
+        <div class="footer-info">
+            <p>📍 Surat, Gujarat</p>
+            <p>☎️ +91 99737 56471</p>
+            <p>✉️ info@sunsolar.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Sun Solar. All Rights Reserved.</p>
+        <p>Designed & Developed by <strong>Nikunj Raval</strong></p>
+    </div>
+</footer>
+
+
+    <div class="success-message" id="successMessage"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
