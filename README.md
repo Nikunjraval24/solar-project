@@ -9,6 +9,8 @@ The Canal Solar Power Project is a solar canal project launched in Gujarat, Indi
 <img width="1916" height="966" alt="Screenshot 2026-02-09 114256" src="https://github.com/user-attachments/assets/d36cb1c5-efe1-4381-9356-db29263a1475" />
 <img width="1919" height="962" alt="Screenshot 2026-02-09 115732" src="https://github.com/user-attachments/assets/e3de87cc-0ff9-40cd-8038-f10d909fe34f" />
 <img width="1912" height="936" alt="Screenshot 2026-02-09 115818" src="https://github.com/user-attachments/assets/1c45a5cd-fc0a-4e82-bd4d-b5ad74cb09bf" />
+<img width="1910" height="973" alt="Screenshot 2026-02-10 203914" src="https://github.com/user-attachments/assets/d7248dab-4aa5-4990-850b-8cee61c650ec" />
+<img width="1919" height="968" alt="Screenshot 2026-02-10 203929" src="https://github.com/user-attachments/assets/774d544a-ebb6-4b99-87f3-f8e81845f4c3" />
 
 <img width="1919" height="982" alt="Screenshot 2026-02-09 114315" src="https://github.com/user-attachments/assets/11926cf3-4dc2-45a7-bdba-7561c6ec3d62" />
 
