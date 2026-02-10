@@ -1,5 +1,91 @@
 # solar-project
-The Canal Solar Power Project is a solar canal project launched in Gujarat, India, to use the 532 km (331 mi) long network of Narmada canals across the state for setting up solar panels to generate electricity.
+🔆 Project Name: Sun Solar – Professional Solar Solutions
+This project is a website and admin system developed for a solar company. It includes separate modules for both customers and administrators.
+
+🏠 1. Home Section
+Use:
+Main landing page of the website
+Displays company introduction
+Creates awareness about solar energy
+The “Explore More” button navigates the user to the About section
+
+🌞 2. About Solar Section
+Use:
+Explains what a Solar Panel System is
+Explains DC to AC power conversion using an inverter
+Explains the benefits of solar energy:
+Reduced electricity bills
+Clean and renewable energy
+Reduced pollution
+
+🛠️ 3. Services Section
+This section displays the services provided by the company:
+
+🔧 Professional Installation
+Proper installation of solar panels
+
+🛠️ Regular Maintenance
+Solar panel cleaning and servicing
+
+🛡️ 10 Years Warranty
+Long-term warranty and customer trust
+
+📦 4. Products Section
+Use:
+Displays different Solar Panel Systems
+Products are dynamically loaded using script.js
+Customers can select products
+
+⭐ 5. Reviews Section
+Use:
+Displays customer reviews
+Helps build customer trust
+Increases confidence for new customers
+
+📝 6. Feedback Form
+Use:
+To collect customer feedback:
+Name
+Email
+Rating
+Message
+
+👉 The form is submitted to feedback.php
+👉 Feedback can be stored in the database
+
+🧾 7. Complaint Module
+Menu: complaint.php
+Use:
+Customers can register complaints
+Report solar system related problems
+Acts as a service request system
+
+🛒 8. Cart System
+Use:
+Users can add products to the cart
+Cart item count is displayed
+Acts as a base for future billing and order system
+
+👨‍💼 9. Management Team Section
+Use:
+Displays company staff details
+Shows contact numbers
+Improves trust and transparency
+
+🔐 10. Admin Panel
+Menu: admin/login.php
+Use (For Admin):
+Admin Login System
+Manage customer complaints
+Check customer feedback
+Manage products
+Dashboard (for future expansion)
+
+🗂️ Backend (PHP + MySQL)
+Backend technologies used in the project:
+PHP (Server-side logic)
+MySQL (phpMyAdmin database)
+PHP Sessions (Admin login system)
 
 
 <img width="1919" height="996" alt="Screenshot 2026-02-09 113711" src="https://github.com/user-attachments/assets/0ff806b5-ea59-48e6-a378-1d7f1dae957e" />
