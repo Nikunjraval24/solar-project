@@ -2,110 +2,26 @@
 🔆 Project Name: Sun Solar – Professional Solar Solutions
 This project is a website and admin system developed for a solar company. It includes separate modules for both customers and administrators.
 
-🏠 1. Home Section
-Use:
-Main landing page of the website
-Displays company introduction
-Creates awareness about solar energy
-The “Explore More” button navigates the user to the About section
-
-🌞 2. About Solar Section
-Use:
-Explains what a Solar Panel System is
-Explains DC to AC power conversion using an inverter
-Explains the benefits of solar energy:
-Reduced electricity bills
-Clean and renewable energy
-Reduced pollution
-
-🛠️ 3. Services Section
-This section displays the services provided by the company:
-
-🔧 Professional Installation
-Proper installation of solar panels
-
-🛠️ Regular Maintenance
-Solar panel cleaning and servicing
-
-🛡️ 10 Years Warranty
-Long-term warranty and customer trust
-
-📦 4. Products Section
-Use:
-Displays different Solar Panel Systems
-Products are dynamically loaded using script.js
-Customers can select products
-
-⭐ 5. Reviews Section
-Use:
-Displays customer reviews
-Helps build customer trust
-Increases confidence for new customers
-
-📝 6. Feedback Form
-Use:
-To collect customer feedback:
-Name
-Email
-Rating
-Message
-
-👉 The form is submitted to feedback.php
-👉 Feedback can be stored in the database
-
-🧾 7. Complaint Module
-Menu: complaint.php
-Use:
-Customers can register complaints
-Report solar system related problems
-Acts as a service request system
-
-🛒 8. Cart System
-Use:
-Users can add products to the cart
-Cart item count is displayed
-Acts as a base for future billing and order system
-
-👨‍💼 9. Management Team Section
-Use:
-Displays company staff details
-Shows contact numbers
-Improves trust and transparency
-
-🔐 10. Admin Panel
-Menu: admin/login.php
-Use (For Admin):
-Admin Login System
-Manage customer complaints
-Check customer feedback
-Manage products
-Dashboard (for future expansion)
-
-🗂️ Backend (PHP + MySQL)
-Backend technologies used in the project:
-PHP (Server-side logic)
-MySQL (phpMyAdmin database)
-PHP Sessions (Admin login system)
-
-
+Home Section
 <img width="1919" height="996" alt="Screenshot 2026-02-09 113711" src="https://github.com/user-attachments/assets/0ff806b5-ea59-48e6-a378-1d7f1dae957e" />
 <img width="1919" height="992" alt="Screenshot 2026-02-09 114211" src="https://github.com/user-attachments/assets/bcd8c7c1-3609-40b6-9402-527707369418" />
 <img width="1919" height="940" alt="Screenshot 2026-02-09 114224" src="https://github.com/user-attachments/assets/1672e0ae-5374-4d0f-9237-2812b0d94594" />
 <img width="1918" height="949" alt="Screenshot 2026-02-09 114243" src="https://github.com/user-attachments/assets/da5d3d9c-c73b-4642-a220-9206a5cb6211" />
 <img width="1916" height="966" alt="Screenshot 2026-02-09 114256" src="https://github.com/user-attachments/assets/d36cb1c5-efe1-4381-9356-db29263a1475" />
-<img width="1919" height="962" alt="Screenshot 2026-02-09 115732" src="https://github.com/user-attachments/assets/e3de87cc-0ff9-40cd-8038-f10d909fe34f" />
-<img width="1912" height="936" alt="Screenshot 2026-02-09 115818" src="https://github.com/user-attachments/assets/1c45a5cd-fc0a-4e82-bd4d-b5ad74cb09bf" />
-<img width="1910" height="973" alt="Screenshot 2026-02-10 203914" src="https://github.com/user-attachments/assets/d7248dab-4aa5-4990-850b-8cee61c650ec" />
-<img width="1919" height="968" alt="Screenshot 2026-02-10 203929" src="https://github.com/user-attachments/assets/774d544a-ebb6-4b99-87f3-f8e81845f4c3" />
+<img width="1919" height="957" alt="Screenshot 2026-02-11 191936" src="https://github.com/user-attachments/assets/ee28708e-3fbb-4a16-8a8b-eb79deee3bbc" />
+<img width="1919" height="966" alt="Screenshot 2026-02-11 192009" src="https://github.com/user-attachments/assets/3b608856-f897-4c0c-9599-af0f90c28779" />
+<img width="1919" height="953" alt="Screenshot 2026-02-11 192100" src="https://github.com/user-attachments/assets/4bef62f3-57a7-470b-94b2-624a04aded9d" />
+<img width="1919" height="506" alt="Screenshot 2026-02-11 192130" src="https://github.com/user-attachments/assets/2e045428-70d8-40c0-ab7a-991a7dc2b8bf" />
+<img width="1919" height="956" alt="Screenshot 2026-02-11 192211" src="https://github.com/user-attachments/assets/5bb58e40-b989-4be5-ba7b-d7380f68ead0" />
+<img width="1906" height="961" alt="Screenshot 2026-02-11 192415" src="https://github.com/user-attachments/assets/2ce58949-1db5-4364-a3d9-5d679ea3bdc3" />
+<img width="1919" height="957" alt="Screenshot 2026-02-11 192443" src="https://github.com/user-attachments/assets/92d5f3ed-f9e5-4184-ab3c-d0342847ab59" />
+<img width="1915" height="940" alt="Screenshot 2026-02-11 192553" src="https://github.com/user-attachments/assets/961b3839-ecd1-43e0-82a1-f41b6f106848" />
+<img width="1919" height="914" alt="Screenshot 2026-02-11 202142" src="https://github.com/user-attachments/assets/f70517c6-4204-4398-a57b-1ab179647222" />
 
-<img width="1919" height="982" alt="Screenshot 2026-02-09 114315" src="https://github.com/user-attachments/assets/11926cf3-4dc2-45a7-bdba-7561c6ec3d62" />
+Admin Panel
 
-<img width="1917" height="961" alt="Screenshot 2026-02-09 114326" src="https://github.com/user-attachments/assets/21973a6f-1f08-41e0-a097-820a02ff08e2" />
-<img width="1918" height="934" alt="Screenshot 2026-02-09 114337" src="https://github.com/user-attachments/assets/914b7b7e-4fd9-4b77-ba45-7de7b50f9b3e" />
-<img width="1919" height="849" alt="Screenshot 2026-02-09 114345" src="https://github.com/user-attachments/assets/4f93d516-9fc4-4296-bafc-db615fff1697" />
-<img width="1919" height="964" alt="Screenshot 2026-02-09 114441" src="https://github.com/user-attachments/assets/2e8f516f-f25b-45f1-a4ba-36dc1fd0dc38" />
-<img width="1917" height="950" alt="Screenshot 2026-02-09 114529" src="https://github.com/user-attachments/assets/a6ccc66d-03b7-4303-a001-1e01774892a0" />
-<img width="1919" height="951" alt="Screenshot 2026-02-09 114607" src="https://github.com/user-attachments/assets/f2d4c2c0-8e4a-4496-960e-64f0cd4161f2" />
-<img width="1919" height="959" alt="Screenshot 2026-02-09 114626" src="https://github.com/user-attachments/assets/ab04af15-1665-4459-8d0e-ae59456a64a5" />
-<img width="1919" height="937" alt="Screenshot 2026-02-09 114637" src="https://github.com/user-attachments/assets/bd891250-1a5b-496a-b329-73f729ffb2ad" />
-<img width="1919" height="793" alt="Screenshot 2026-02-09 114647" src="https://github.com/user-attachments/assets/9edbff4b-45de-4d51-b615-1ec8525604e6" />
+<img width="1917" height="950" alt="Screenshot 2026-02-09 114529" src="https://github.com/user-attachments/assets/6f78a3c1-0646-4c52-babd-4db2f114d6ed" />
+<img width="1914" height="928" alt="Screenshot 2026-02-11 202522" src="https://github.com/user-attachments/assets/5f342746-5b6a-4581-9e6b-d7f19090d851" />
+<img width="1913" height="922" alt="Screenshot 2026-02-11 202534" src="https://github.com/user-attachments/assets/c50235e7-549c-49b0-95ce-74da3015d522" />
+<img width="1919" height="922" alt="Screenshot 2026-02-11 202543" src="https://github.com/user-attachments/assets/eed52d74-1b6b-4a84-9b43-0e544a5274dd" />
+<img width="1919" height="925" alt="Screenshot 2026-02-11 202553" src="https://github.com/user-attachments/assets/a47a531f-374e-4723-bd77-699d28612e20" />
