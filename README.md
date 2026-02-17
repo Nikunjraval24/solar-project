@@ -17,7 +17,8 @@ Home Section
 <img width="1919" height="957" alt="Screenshot 2026-02-11 192443" src="https://github.com/user-attachments/assets/92d5f3ed-f9e5-4184-ab3c-d0342847ab59" />
 <img width="1915" height="940" alt="Screenshot 2026-02-11 192553" src="https://github.com/user-attachments/assets/961b3839-ecd1-43e0-82a1-f41b6f106848" />
 <img width="1914" height="969" alt="Screenshot 2026-02-13 220840" src="https://github.com/user-attachments/assets/265a0574-14d9-41aa-a444-118c43509722" />
-<img width="1919" height="965" alt="Screenshot 2026-02-17 192929" src="https://github.com/user-attachments/assets/09e50f99-70bf-4879-9d92-6c1bed2fcbeb" />
+<img width="1919" height="964" alt="Screenshot 2026-02-17 202251" src="https://github.com/user-attachments/assets/dde90f72-f5e8-402d-b8b2-1b2d78906bd5" />
+
 
 
 
