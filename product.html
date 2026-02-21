@@ -2,255 +2,215 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Product Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sun Solar - Product Details</title>
 
 <style>
-body{
-    font-family: 'Segoe UI', sans-serif;
-    background:#f4f6f8;
-    margin:0;
+body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; margin: 0; }
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #0f9d58, #34a853);
+    padding: 15px 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.header{
-    background: linear-gradient(135deg,#0f9d58,#34a853);
-    padding:20px;
-    color:white;
-    font-size:22px;
+.logo { font-size: 22px; font-weight: bold; cursor: pointer; }
+
+/* Layout */
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 0 20px;
 }
-.container{
-    max-width:1100px;
-    margin:40px auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
-.card{
-    background:white;
-    padding:25px;
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+.card img { width: 100%; border-radius: 12px; object-fit: cover; }
+
+.price {
+    font-size: 28px;
+    color: #0f9d58;
+    font-weight: bold;
+    margin: 15px 0;
 }
-.card img{
-    width:100%;
-    border-radius:12px;
+.add-btn {
+    background: #0f9d58;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
 }
-.price{
-    font-size:26px;
-    color:#0f9d58;
-    font-weight:bold;
+
+/* Feature Styling */
+.feature-info {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f0fdf4;
+    border-radius: 12px;
+    border: 1px solid #dcfce7;
 }
-.add-btn{
-    background:#0f9d58;
-    color:white;
-    border:none;
-    padding:14px 30px;
-    border-radius:30px;
-    font-size:16px;
-    cursor:pointer;
+.feature-item {
+    color: #166534;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.4;
 }
-.review-card{
-    background:#f4f6f8;
-    padding:15px;
-    border-radius:12px;
-    margin-top:12px;
+.feature-item b { color: #064e3b; }
+
+/* Review Section */
+.review-section {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
 }
-.review-head{
-    display:flex;
-    align-items:center;
-    gap:12px;
+.review-form input,
+.review-form select,
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: inherit;
 }
-.avatar{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:#0f9d58;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
+.review-form textarea { height: 70px; resize: none; }
+
+/* RELATED PRODUCTS */
+.related-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
 }
-.stars{color:#f4b400;}
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 190px);
+    gap: 20px;
+    justify-content: center;
+}
+.related-card {
+    background: white;
+    padding: 15px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.related-card:hover {
+    transform: translateY(-5px);
+    border-color: #0f9d58;
+}
+.related-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
 </style>
 </head>
-
 <body>
 
-<div class="header">☀️ Sun Solar – Product Details</div>
+<!-- Header SAME -->
+<div class="header">
+    <div class="logo" onclick="location.href='index.html'">☀️ Sun Solar</div>
+</div>
+
 <div class="container" id="productDetail"></div>
 
+<div class="related-section">
+    <h2>Explore More Solar Products</h2>
+    <div class="related-grid" id="relatedProducts"></div>
+</div>
+
 <script>
-const products = JSON.parse(localStorage.getItem("productsData"));
-const id = localStorage.getItem("selectedProductId");
-const product = products.find(p => p.id == id);
+/* --- Product Detail Logic --- */
+const products = JSON.parse(localStorage.getItem("productsData")) || [];
+const selectedId = localStorage.getItem("selectedProductId");
+const product = products.find(p => p.id == selectedId);
 
-/* REVIEWS SAME */
-const productReviews = {
-  1: [
-    {name:"Rajesh Patel", city:"Surat", stars:5, comment:"Excellent efficiency and premium quality."},
-    {name:"Amit Shah", city:"Ahmedabad", stars:4, comment:"Perfect for limited roof space."},
-    {name:"Neha Desai", city:"Navsari", stars:5, comment:"Electricity bill reduced a lot."}
-  ],
-  2: [
-    {name:"Suresh Mehta", city:"Vadodara", stars:5, comment:"Best budget solar panel."},
-    {name:"Kiran Joshi", city:"Rajkot", stars:4, comment:"Good performance for price."},
-    {name:"Pooja Trivedi", city:"Surat", stars:4, comment:"Reliable and durable."}
-  ],
-  3: [
-    {name:"Hardik Patel", city:"Anand", stars:5, comment:"Very lightweight and modern."},
-    {name:"Rina Kapadia", city:"Bharuch", stars:4, comment:"Easy installation."},
-    {name:"Vishal Rana", city:"Valsad", stars:4, comment:"Nice alternative technology."}
-  ],
-  4: [
-    {name:"Mahesh Solanki", city:"Bhavnagar", stars:5, comment:"Perfect for off-grid system."},
-    {name:"Nilesh Parmar", city:"Junagadh", stars:5, comment:"High output even in heat."},
-    {name:"Jatin Dave", city:"Porbandar", stars:4, comment:"Very powerful panel."}
-  ],
-  5: [
-    {name:"Yash Modi", city:"Gandhinagar", stars:5, comment:"Dual side power generation is amazing."},
-    {name:"Komal Shah", city:"Mehsana", stars:4, comment:"Advanced technology panel."},
-    {name:"Rohit Vyas", city:"Patan", stars:4, comment:"Good long-term investment."}
-  ],
-  6: [
-    {name:"Parth Desai", city:"Surendranagar", stars:5, comment:"Future solar technology."},
-    {name:"Nikita Mehta", city:"Morbi", stars:4, comment:"Very promising innovation."},
-    {name:"Jay Patel", city:"Botad", stars:5, comment:"Impressive efficiency."}
-  ]
-};
+if(product) {
+    document.getElementById("productDetail").innerHTML = `
+        <div class="card"><img src="${product.image}"></div>
+        <div class="card">
+            <h1 style="margin-top:0;">${product.name}</h1>
+            <p>${product.description}</p>
+            <div class="price">₹${product.price.toLocaleString("en-IN")}</div>
+            <button class="add-btn" onclick="addToCart(${product.id})">🛒 Add to Cart</button>
 
-const reviews = productReviews[id] || [];
+            <div class="feature-info">
+                <div class="feature-item">🛡️ <b>Warranty:</b> 5 Years product warranty & 25 Years linear performance warranty.</div>
+                <div class="feature-item">🔧 <b>Installation:</b> Free site survey and professional installation by certified engineers.</div>
+                <div class="feature-item">☀️ <b>Efficiency:</b> High-efficiency A-Grade Mono PERC cell technology for better low-light performance.</div>
+                <div class="feature-item">📑 <b>Subsidy:</b> Eligible for Government Subsidies under PM-Surya Ghar Scheme.</div>
+                <div class="feature-item">✅ <b>Certification:</b> MNRE Approved, BIS Certified, and ISO Quality Standard compliant.</div>
+                <div class="feature-item">🛠️ <b>Maintenance:</b> 2 Years free maintenance service (AMC) included with every purchase.</div>
+                <div class="feature-item">💰 <b>Savings:</b> Engineered to reduce your electricity bills by up to 90%.</div>
+            </div>
 
-document.getElementById("productDetail").innerHTML = `
-  <div class="card">
-    <img src="${product.image}">
-  </div>
-  
-  <div class="card">
-    <h1>${product.name}</h1>
-    <p>${product.description}</p>
-    <div class="price">₹${product.price.toLocaleString("en-IN")}</div>
-
-    <button class="add-btn" onclick="addToCart(${product.id})">
-      🛒 Add to Cart
-    </button>
-
-    <button class="add-btn" style="margin-top:15px; background:#ff6f00;" onclick="openPayment()">
-      💳 Buy Now
-    </button>
-    
-    <h3 style="margin-top:30px">Customer Reviews</h3>
-
-    ${reviews.map(r => `
-      <div class="review-card">
-        <div class="review-head">
-          <div class="avatar">${r.name.charAt(0)}</div>
-          <div>
-            <strong>${r.name}</strong><br>
-            <small>${r.city}</small>
-          </div>
+            <div class="review-section">
+                <h3>Customer Reviews</h3>
+                <form class="review-form" onsubmit="submitReview(event)">
+                    <input type="text" id="revName" placeholder="Your Name" required>
+                    <select id="revRating">
+                        <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                        <option value="3">⭐⭐⭐ (3/5)</option>
+                        <option value="2">⭐⭐ (2/5)</option>
+                        <option value="1">⭐ (1/5)</option>
+                    </select>
+                    <textarea id="revComment" placeholder="Write your review here..." required></textarea>
+                    <button type="submit" class="add-btn" style="padding:10px; font-size:14px;">Submit Review</button>
+                </form>
+            </div>
         </div>
-        <div class="stars">${"⭐".repeat(r.stars)}</div>
-        <p>${r.comment}</p>
-      </div>
-    `).join("")}
-  </div>
-`;
+    `;
 
-function addToCart(id){
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const p = products.find(x => x.id === id);
-
-  const exist = cart.find(x => x.id === id);
-  if(exist){ exist.qty += 1; }
-  else{ cart.push({...p, qty:1}); }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("Product added to cart");
+    let relHTML = "";
+    products.filter(p => p.id != selectedId).forEach(p => {
+        relHTML += `
+            <div class="related-card" onclick="viewProduct(${p.id})">
+                <img src="${p.image}">
+                <h4 style="margin:5px 0;">${p.name}</h4>
+                <div style="color:#0f9d58; font-weight:bold;">₹${p.price.toLocaleString("en-IN")}</div>
+            </div>
+        `;
+    });
+    document.getElementById("relatedProducts").innerHTML = relHTML;
 }
 
-/* ===== PAYMENT FUNCTIONS (DB CONNECTED) ===== */
-function openPayment(){
-  document.getElementById("payProduct").innerText = product.name;
-  document.getElementById("payAmount").innerText = product.price.toLocaleString("en-IN");
-  document.getElementById("paymentModal").style.display = "block";
+function submitReview(e) {
+    e.preventDefault();
+    alert("Thank you! Your review has been submitted successfully.");
+    e.target.reset();
 }
 
-function closePayment(){
-  document.getElementById("paymentModal").style.display = "none";
+function viewProduct(id) {
+    localStorage.setItem("selectedProductId", id);
+    location.reload();
 }
 
-function makePayment(){
-  const name = document.getElementById("custName").value;
-  const email = document.getElementById("custEmail").value;
-  const mobile = document.getElementById("custMobile").value;
-  const address = document.getElementById("custAddress").value;
-
-  if(!name || !email || !mobile || !address){
-    alert("⚠️ Please fill all customer details.");
-    return;
-  }
-
-  // 🔥 SEND DATA TO PHP FOR DATABASE SAVE
-  fetch("test.php", {
-    method: "POST",
-    headers: {"Content-Type":"application/x-www-form-urlencoded"},
-    body: 
-      "customer_name=" + encodeURIComponent(name) +
-      "&email=" + encodeURIComponent(email) +
-      "&mobile=" + encodeURIComponent(mobile) +
-      "&address=" + encodeURIComponent(address) +
-      "&product_name=" + encodeURIComponent(product.name) +
-      "&amount=" + encodeURIComponent(product.price) +
-      "&payment_method=Online" +
-      "&payment_status=Paid"
-  })
-  .then(res => res.text())
-  .then(data => {
-    alert("✅ Payment Successful!");
-
-    closePayment();
-  })
-  .catch(err => {
-    alert("❌ Error saving payment in database!");
-    console.error(err);
-  });
+function addToCart(id) {
+    alert("Product added to cart!");
 }
 </script>
-
-<!-- PAYMENT MODAL -->
-<div id="paymentModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999;">
-  <div style="background:#fff; max-width:420px; margin:80px auto; padding:25px; border-radius:16px; text-align:center;">
-    
-    <h2>🔒 Secure Payment</h2>
-
-    <input id="custName" placeholder="Full Name"
-      style="width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ccc;">
-    
-    <input id="custEmail" type="email" placeholder="Email Address"
-      style="width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ccc;">
-
-    <input id="custMobile" placeholder="Mobile Number"
-      style="width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ccc;">
-
-    <textarea id="custAddress" placeholder="Delivery Address"
-      style="width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ccc;"></textarea>
-
-    <p><strong>Product:</strong> <span id="payProduct"></span></p>
-    <p><strong>Amount:</strong> ₹<span id="payAmount"></span></p>
-
-    <select style="width:100%; padding:10px; margin:15px 0; border-radius:8px;">
-      <option>UPI</option>
-      <option>Debit Card</option>
-      <option>Credit Card</option>
-      <option>Net Banking</option>
-      <option>Cash on Delivery</option>
-    </select>
-
-    <button class="add-btn" onclick="makePayment()">Pay Now</button>
-    <br><br>
-    <button onclick="closePayment()" style="background:#ccc; border:none; padding:10px 20px; border-radius:20px;">Cancel</button>
-
-  </div>
-</div>
 
 </body>
 </html>

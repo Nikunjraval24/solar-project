@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Checkout</title>
+
+<style>
+body{font-family:Segoe UI;background:#f4f6f8;margin:0;}
+.container{max-width:600px;margin:40px auto;background:#fff;padding:30px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
+h2{text-align:center;color:#0f9d58;}
+input,textarea,select{
+  width:100%;padding:12px;margin:8px 0;
+  border-radius:8px;border:1px solid #ccc;
+}
+button{
+  width:100%;padding:14px;
+  background:#0f9d58;color:#fff;
+  border:none;border-radius:30px;
+  font-size:16px;cursor:pointer;
+}
+.summary{background:#f9fafb;padding:15px;border-radius:10px;margin-top:15px;}
+.row{display:flex;justify-content:space-between;margin:6px 0;}
+.total{font-weight:bold;color:#0f9d58;font-size:18px;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🧾 Checkout</h2>
+
+  <input id="customer_name" placeholder="Full Name" required>
+  <input id="email" type="email" placeholder="Email" required>
+  <input id="mobile" placeholder="Mobile Number" required>
+  <textarea id="address" placeholder="Delivery Address" required></textarea>
+
+  <select id="payment_method">
+    <option>UPI</option>
+    <option>Debit Card</option>
+    <option>Credit Card</option>
+    <option>Cash on Delivery</option>
+  </select>
+
+  <div class="summary">
+    <div class="row"><span>Subtotal</span><span id="sub"></span></div>
+    <div class="row"><span>GST (18%)</span><span id="gst"></span></div>
+    <div class="row total"><span>Grand Total</span><span id="grand"></span></div>
+  </div>
+
+  <button onclick="placeOrder()">Place Order</button>
+</div>
+
+<script>
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let sub = 0;
+cart.forEach(i => sub += i.price * i.qty);
+let gst = sub * 0.18;
+let grand = sub + gst;
+
+document.getElementById("sub").innerText = "₹" + sub.toLocaleString("en-IN");
+document.getElementById("gst").innerText = "₹" + gst.toLocaleString("en-IN");
+document.getElementById("grand").innerText = "₹" + grand.toLocaleString("en-IN");
+
+function placeOrder(){
+  const data = new URLSearchParams();
+
+  data.append("customer_name", document.getElementById("customer_name").value);
+  data.append("email", document.getElementById("email").value);
+  data.append("mobile", document.getElementById("mobile").value);
+  data.append("address", document.getElementById("address").value);
+  data.append("payment_method", document.getElementById("payment_method").value);
+
+  data.append("items", JSON.stringify(cart));
+  data.append("subtotal", sub);
+  data.append("gst", gst);
+  data.append("grand_total", grand);
+
+  fetch("place_order.php", {
+    method:"POST",
+    headers:{"Content-Type":"application/x-www-form-urlencoded"},
+    body: data.toString()
+  })
+  .then(res => res.text())
+  .then(res => {
+    alert("✅ Order Placed Successfully!");
+    localStorage.removeItem("cart");
+    window.location.href = "order_success.html";
+  })
+  .catch(err => {
+    alert("❌ Order Failed!");
+    console.log(err);
+  });
+}
+</script>
+
+</body>
+</html>

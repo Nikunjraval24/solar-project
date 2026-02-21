@@ -14,7 +14,7 @@ if (file_exists("../db.php")) {
     die("Error: db.php file not found.");
 }
 
-// 3. Data fetching with error handling
+// 3. Data fetching
 $complaints_res = mysqli_query($conn, "SELECT COUNT(*) AS total FROM complaints");
 $complaints_count = ($complaints_res) ? mysqli_fetch_assoc($complaints_res)['total'] : 0;
 
@@ -23,6 +23,17 @@ $feedback_count = ($feedback_res) ? mysqli_fetch_assoc($feedback_res)['total'] :
 
 $products_res = mysqli_query($conn, "SELECT COUNT(*) AS total FROM products");
 $products_count = ($products_res) ? mysqli_fetch_assoc($products_res)['total'] : 0;
+
+$orders_res = mysqli_query($conn, "SELECT COUNT(*) AS total FROM orders");
+$orders_count = ($orders_res) ? mysqli_fetch_assoc($orders_res)['total'] : 0;
+
+// Reviews Count
+$reviews_res = mysqli_query($conn, "SELECT COUNT(*) AS total FROM product_reviews");
+$reviews_count = ($reviews_res) ? mysqli_fetch_assoc($reviews_res)['total'] : 0;
+
+$revenue_res = mysqli_query($conn, "SELECT SUM(grand_total) AS total FROM orders WHERE order_status='Completed'");
+$total_revenue = ($revenue_res && mysqli_num_rows($revenue_res) > 0) ? mysqli_fetch_assoc($revenue_res)['total'] : 0;
+$total_revenue = ($total_revenue) ? $total_revenue : 0;
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +41,7 @@ $products_count = ($products_res) ? mysqli_fetch_assoc($products_res)['total'] :
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sun Solar | Pro Admin Dashboard</title>
+<title>Sun Solar | Admin Dashboard</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -52,7 +63,6 @@ body {
     display: flex;
 }
 
-/* --- SIDEBAR --- */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -70,9 +80,7 @@ body {
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
 }
 
 .sidebar a {
@@ -95,9 +103,8 @@ body {
     color: var(--primary);
 }
 
-.logout-link { color: #fca5a5 !important; margin-bottom: 20px !important; }
+.logout-link { color: #fca5a5 !important; margin-top: auto; margin-bottom: 20px !important; }
 
-/* --- MAIN CONTENT --- */
 .main {
     margin-left: var(--sidebar-width);
     width: calc(100% - var(--sidebar-width));
@@ -112,36 +119,34 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- CARDS --- */
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
     margin-bottom: 40px;
 }
 
 .card {
     background: white;
-    padding: 25px;
+    padding: 20px;
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.02);
     display: flex;
-    align-items: center;
-    gap: 20px;
+    align-items: center; gap: 15px;
     border: 1px solid #e2e8f0;
 }
 
 .card-icon {
-    width: 60px; height: 60px;
+    width: 45px; height: 45px;
     background: rgba(249, 115, 22, 0.1);
     color: var(--primary);
-    border-radius: 15px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
+    font-size: 18px;
 }
 
-.card-info h2 { margin: 0; font-size: 28px; color: var(--secondary); }
-.card-info p { margin: 0; color: #64748b; font-size: 14px; font-weight: 600; text-transform: uppercase; }
+.card-info h2 { margin: 0; font-size: 22px; color: var(--secondary); }
+.card-info p { margin: 0; color: #64748b; font-size: 11px; font-weight: 600; text-transform: uppercase; }
 
 .box {
     background: white;
@@ -149,20 +154,22 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.02);
     margin-bottom: 30px;
+    overflow-x: auto;
 }
 
-table { width: 100%; border-collapse: collapse; }
+table { width: 100%; border-collapse: collapse; min-width: 800px; }
 th { text-align: left; padding: 15px; background: #f8fafc; color: #64748b; font-size: 13px; }
-td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
+td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
 
 .status-badge {
     padding: 5px 12px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    background: #dcfce7;
-    color: #166534;
 }
+.status-completed { background: #dcfce7; color: #166534; }
+.status-pending { background: #fee2e2; color: #991b1b; }
+.rating-star { color: #facc15; }
 </style>
 </head>
 <body>
@@ -170,12 +177,13 @@ td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
 <div class="sidebar">
     <div class="sidebar-brand"><i class="fas fa-sun"></i> SUN SOLAR</div>
     
-    <a href="logout.php" class="logout-link"><i class="fas fa-power-off"></i> Logout</a>
-
     <a onclick="openTab('dash')" id="link-dash" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
-    <a onclick="openTab('prod')" id="link-prod"><i class="fas fa-box"></i> Products</a>
+    <a onclick="openTab('ord')" id="link-ord"><i class="fas fa-shopping-cart"></i> Orders</a>
+    <a onclick="openTab('rev')" id="link-rev"><i class="fas fa-star"></i> Product Reviews</a>
     <a onclick="openTab('feed')" id="link-feed"><i class="fas fa-comments"></i> Feedback</a>
     <a onclick="openTab('comp')" id="link-comp"><i class="fas fa-headset"></i> Complaints</a>
+
+    <a href="logout.php" class="logout-link"><i class="fas fa-power-off"></i> Logout</a>
 </div>
 
 <div class="main">
@@ -184,55 +192,97 @@ td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
         <h1 style="margin-top:0;">Analytics Overview</h1>
         <div class="cards">
             <div class="card">
-                <div class="card-icon"><i class="fas fa-solar-panel"></i></div>
-                <div class="card-info"><h2><?php echo $products_count; ?></h2><p>Products</p></div>
+                <div class="card-icon" style="background:rgba(250,204,21,0.1); color:#facc15;"><i class="fas fa-star"></i></div>
+                <div class="card-info"><h2><?php echo $reviews_count; ?></h2><p>Reviews</p></div>
             </div>
             <div class="card">
-                <div class="card-icon"><i class="fas fa-message"></i></div>
+                <div class="card-icon" style="background:rgba(59,130,246,0.1); color:#3b82f6;"><i class="fas fa-comments"></i></div>
                 <div class="card-info"><h2><?php echo $feedback_count; ?></h2><p>Feedback</p></div>
             </div>
             <div class="card">
-                <div class="card-icon"><i class="fas fa-ticket"></i></div>
+                <div class="card-icon" style="background:rgba(239,68,68,0.1); color:#ef4444;"><i class="fas fa-ticket"></i></div>
                 <div class="card-info"><h2><?php echo $complaints_count; ?></h2><p>Complaints</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-shopping-cart"></i></div>
+                <div class="card-info"><h2><?php echo $orders_count; ?></h2><p>Total Orders</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-indian-rupee-sign"></i></div>
+                <div class="card-info"><h2>₹<?php echo number_format($total_revenue); ?></h2><p>Revenue</p></div>
             </div>
         </div>
         
         <div class="box">
-            <h3><i class="fas fa-chart-area"></i> Monthly Traffic & Growth</h3>
-            <canvas id="growthChart" height="100"></canvas>
+            <h3><i class="fas fa-chart-area"></i> Inquiry Growth</h3>
+            <canvas id="growthChart" height="80"></canvas>
         </div>
     </div>
 
-    <div id="prod" class="section">
-        <h1>Product Inventory</h1>
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
-            <div class="box">
-                <table>
-                    <thead><tr><th>ID</th><th>Product Name</th><th>Price</th><th>Status</th></tr></thead>
-                    <tbody>
-                        <?php
-                        // LIVE PRODUCTS (NO LIMIT)
-                        $res = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
-                        if($res && mysqli_num_rows($res) > 0) {
-                            while($row = mysqli_fetch_assoc($res)){
-                                echo "<tr>
-                                    <td>#{$row['id']}</td>
-                                    <td><b>{$row['name']}</b></td>
-                                    <td>₹".number_format($row['price'])."</td>
-                                    <td><span class='status-badge'>In Stock</span></td>
-                                </tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='4'>No products found.</td></tr>";
+    <div id="ord" class="section">
+        <h1>Orders Management</h1>
+        <div class="box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Customer</th><th>Mobile</th><th>Total</th><th>Status</th><th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $res = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
+                    while($row = mysqli_fetch_assoc($res)){
+                        $status_class = ($row['order_status'] == 'Completed') ? 'status-completed' : 'status-pending';
+                        echo "<tr>
+                            <td>#{$row['id']}</td>
+                            <td><b>{$row['customer_name']}</b></td>
+                            <td>{$row['mobile']}</td>
+                            <td>₹".number_format($row['grand_total'])."</td>
+                            <td><span class='status-badge {$status_class}'>{$row['order_status']}</span></td>
+                            <td>".date("d-m-Y", strtotime($row['created_at']))."</td>
+                        </tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="rev" class="section">
+        <h1>Product Reviews</h1>
+        <div class="box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Product ID</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $res = mysqli_query($conn, "SELECT * FROM product_reviews ORDER BY id DESC");
+                    if($res && mysqli_num_rows($res) > 0) {
+                        while($row = mysqli_fetch_assoc($res)){
+                            $stars = str_repeat('<i class="fas fa-star rating-star"></i>', $row['rating']);
+                            echo "<tr>
+                                <td>#{$row['id']}</td>
+                                <td><b>{$row['customer_name']}</b></td>
+                                <td>#{$row['product_id']}</td>
+                                <td>{$stars}</td>
+                                <td>{$row['review_text']}</td>
+                                <td>".date("d-m-Y", strtotime($row['created_at']))."</td>
+                            </tr>";
                         }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-            <div class="box">
-                <h3>Stock Ratio</h3>
-                <canvas id="stockChart"></canvas>
-            </div>
+                    } else {
+                        echo "<tr><td colspan='6'>No reviews found.</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -244,13 +294,9 @@ td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
                 <tbody>
                     <?php
                     $res = mysqli_query($conn, "SELECT * FROM feedback ORDER BY id DESC");
-                    if($res && mysqli_num_rows($res) > 0) {
-                        while($row = mysqli_fetch_assoc($res)){
-                            $feed_msg = $row['message'] ?? $row['feedback'] ?? 'No feedback';
-                            echo "<tr><td>User #{$row['id']}</td><td>{$feed_msg}</td></tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='2'>No feedback received.</td></tr>";
+                    while($row = mysqli_fetch_assoc($res)){
+                        $msg = $row['message'] ?? $row['feedback'] ?? 'No message';
+                        echo "<tr><td>User #{$row['id']}</td><td>{$msg}</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -266,16 +312,8 @@ td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
                 <tbody>
                     <?php
                     $res = mysqli_query($conn, "SELECT * FROM complaints ORDER BY id DESC");
-                    if($res && mysqli_num_rows($res) > 0) {
-                        while($row = mysqli_fetch_assoc($res)){
-                            echo "<tr>
-                                <td>#{$row['id']}</td>
-                                <td><b>{$row['customer_name']}</b></td>
-                                <td>{$row['complaint']}</td>
-                            </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='3'>No complaints found.</td></tr>";
+                    while($row = mysqli_fetch_assoc($res)){
+                        echo "<tr><td>#{$row['id']}</td><td><b>{$row['customer_name']}</b></td><td>{$row['complaint']}</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -297,34 +335,17 @@ const ctx1 = document.getElementById('growthChart').getContext('2d');
 new Chart(ctx1, {
     type: 'line',
     data: {
-        labels: [
-            'Jan','Feb','Mar','Apr','May','Jun',
-            'Jul','Aug','Sep','Oct','Nov','Dec'
-        ],
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
         datasets: [{
-            label: 'Inquiry Growth',
-            data: [
-                5,12,8,20,15,18,22,19,16,14,17,
-                <?php echo $complaints_count + $feedback_count; ?>
-            ],
+            label: 'Total Activity',
+            data: [5,12,8,20,15,18,22,19,16,14,17, <?php echo $complaints_count + $feedback_count + $reviews_count; ?>],
             borderColor: '#f97316',
             backgroundColor: 'rgba(249, 115, 22, 0.1)',
             fill: true,
             tension: 0.4
         }]
-    }
-});
-
-const ctx2 = document.getElementById('stockChart').getContext('2d');
-new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-        labels: ['Products', 'Complaints'],
-        datasets: [{
-            data: [<?php echo $products_count; ?>, <?php echo $complaints_count; ?>],
-            backgroundColor: ['#f97316', '#1e293b']
-        }]
-    }
+    },
+    options: { responsive: true }
 });
 </script>
 
