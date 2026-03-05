@@ -3,7 +3,8 @@
 This project is a website and admin system developed for a solar company. It includes separate modules for both customers and administrators.
 
 Home Section
-<img width="1919" height="996" alt="Screenshot 2026-02-09 113711" src="https://github.com/user-attachments/assets/0ff806b5-ea59-48e6-a378-1d7f1dae957e" />
+<img width="1919" height="968" alt="Screenshot 2026-03-05 205737" src="https://github.com/user-attachments/assets/c63ebbf2-a0b5-409c-b82d-aae29712e9cb" />
+
 <img width="1919" height="992" alt="Screenshot 2026-02-09 114211" src="https://github.com/user-attachments/assets/bcd8c7c1-3609-40b6-9402-527707369418" />
 <img width="1919" height="940" alt="Screenshot 2026-02-09 114224" src="https://github.com/user-attachments/assets/1672e0ae-5374-4d0f-9237-2812b0d94594" />
 <img width="1918" height="949" alt="Screenshot 2026-02-09 114243" src="https://github.com/user-attachments/assets/da5d3d9c-c73b-4642-a220-9206a5cb6211" />
