@@ -3,25 +3,14 @@
 This project is a website and admin system developed for a solar company. It includes separate modules for both customers and administrators.
 
 Home Section
-<img width="1919" height="968" alt="Screenshot 2026-03-05 205737" src="https://github.com/user-attachments/assets/c63ebbf2-a0b5-409c-b82d-aae29712e9cb" />
-
-<img width="1919" height="992" alt="Screenshot 2026-02-09 114211" src="https://github.com/user-attachments/assets/bcd8c7c1-3609-40b6-9402-527707369418" />
-<img width="1919" height="940" alt="Screenshot 2026-02-09 114224" src="https://github.com/user-attachments/assets/1672e0ae-5374-4d0f-9237-2812b0d94594" />
-<img width="1918" height="949" alt="Screenshot 2026-02-09 114243" src="https://github.com/user-attachments/assets/da5d3d9c-c73b-4642-a220-9206a5cb6211" />
-<img width="1916" height="966" alt="Screenshot 2026-02-09 114256" src="https://github.com/user-attachments/assets/d36cb1c5-efe1-4381-9356-db29263a1475" />
-<img width="1919" height="957" alt="Screenshot 2026-02-11 191936" src="https://github.com/user-attachments/assets/ee28708e-3fbb-4a16-8a8b-eb79deee3bbc" />
-<img width="1919" height="966" alt="Screenshot 2026-02-11 192009" src="https://github.com/user-attachments/assets/3b608856-f897-4c0c-9599-af0f90c28779" />
-<img width="1919" height="953" alt="Screenshot 2026-02-11 192100" src="https://github.com/user-attachments/assets/4bef62f3-57a7-470b-94b2-624a04aded9d" />
-<img width="1919" height="506" alt="Screenshot 2026-02-11 192130" src="https://github.com/user-attachments/assets/2e045428-70d8-40c0-ab7a-991a7dc2b8bf" />
-<img width="1919" height="956" alt="Screenshot 2026-02-11 192211" src="https://github.com/user-attachments/assets/5bb58e40-b989-4be5-ba7b-d7380f68ead0" />
-<img width="1906" height="961" alt="Screenshot 2026-02-11 192415" src="https://github.com/user-attachments/assets/2ce58949-1db5-4364-a3d9-5d679ea3bdc3" />
-<img width="1919" height="957" alt="Screenshot 2026-02-11 192443" src="https://github.com/user-attachments/assets/92d5f3ed-f9e5-4184-ab3c-d0342847ab59" />
-<img width="1915" height="940" alt="Screenshot 2026-02-11 192553" src="https://github.com/user-attachments/assets/961b3839-ecd1-43e0-82a1-f41b6f106848" />
-<img width="1914" height="969" alt="Screenshot 2026-02-13 220840" src="https://github.com/user-attachments/assets/265a0574-14d9-41aa-a444-118c43509722" />
-<img width="1919" height="968" alt="Screenshot 2026-02-17 202830" src="https://github.com/user-attachments/assets/9f58202d-a5c0-421b-9c64-f3d46d445d42" />
-
-
-
+<img width="1919" height="952" alt="Screenshot 2026-03-26 102336" src="https://github.com/user-attachments/assets/d05e67a6-152f-45e6-b9df-c7e0d7edc918" />
+<img width="1919" height="961" alt="Screenshot 2026-03-26 102351" src="https://github.com/user-attachments/assets/4f10eea3-d8ec-4dce-9622-f25136a763b8" />
+<img width="1918" height="963" alt="Screenshot 2026-03-26 102406" src="https://github.com/user-attachments/assets/347d4873-11af-48ec-840e-e42d322592db" />
+<img width="1919" height="943" alt="Screenshot 2026-03-26 102420" src="https://github.com/user-attachments/assets/373b38c5-078c-4539-b001-65bddcd15878" />
+<img width="1919" height="956" alt="Screenshot 2026-03-26 102430" src="https://github.com/user-attachments/assets/b12ec8da-7593-41a9-a718-d41fab70c0ae" />
+<img width="1919" height="949" alt="Screenshot 2026-03-26 102444" src="https://github.com/user-attachments/assets/095b20f8-3c4d-4704-9d66-3bf68d5063f1" />
+<img width="1919" height="944" alt="Screenshot 2026-03-26 102458" src="https://github.com/user-attachments/assets/f777d34e-f013-41ed-be2e-19fbc369208c" />
+<img width="1919" height="934" alt="Screenshot 2026-03-26 102514" src="https://github.com/user-attachments/assets/12617e07-ff4d-4418-af99-e9da6354c3d3" />
 
 
 Admin Panel
